@@ -1,0 +1,60 @@
+<html>
+<head>
+    <script type="text/javascript" src="jsPlugin/jquery-1.9.1.min.js"></script>
+
+    <script>
+        function form_to_json(selector) {
+            var ary = $(selector).serializeArray();
+            var obj = {};
+            for (var a = 0; a < ary.length; a++) obj[ary[a].name] = ary[a].value;
+            return obj;
+        }
+
+        /*function Submitter (tableName) {
+            this.tableName = tableName;
+
+            this.fetchData = function (criteria) {
+
+            }
+        }*/
+
+        $(document).ready(function () {
+            $('#formInput').submit(function (e) {
+                e.preventDefault();
+                var url = $(this).attr('action'),
+                    dataJson = form_to_json($(this)),
+                    data;
+
+                data = {
+                    tableName: 'USERS',
+                    operationType: 'save',//NON VA
+                    data: dataJson
+                };
+
+                alert(data);
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: JSON.stringify(data)
+                }).done(function (data) {
+                    alert('DONE: ' + JSON.stringify(data));
+                }).fail(function (err) {
+                    alert('FAIL: ' + JSON.stringify(err));
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form id="formInput" action="http://localhost:8789/save-data" method="post">
+    Nome: <input type="text" name="nome">
+    Cognome: <input type="text" name="cognome">
+    <input type="submit" value="invia">
+</form>
+
+<div id="users">
+    <ul>
+    </ul>
+</div>
+</body>
+</html>
