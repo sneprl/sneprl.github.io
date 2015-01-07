@@ -6,45 +6,25 @@ module.exports = function (grunt) {
         uglify: {
             my_target: {
                 files: {
-                    'js/InfiniteCarousel-<%=vesrion%>/minified/InfiniteCarousel.min.js': ['js/InfiniteCarousel-dev/InfiniteCarousel.js']
+                    'js/InfiniteCarousel-<%=vesrion%>-min/InfiniteCarousel.min.js': ['js/InfiniteCarousel-dev/InfiniteCarousel.js']
                 }
             }
         },
         copy: {
             main: {
                 files: [
-                    //FULL DEV VERSION
-                    {
-                        expand: true,
-                        cwd:'js/InfiniteCarousel-dev/img/',
-                        src:['**'],
-                        dest: 'js/InfiniteCarousel-<%=vesrion%>/dev/img/'
-                    },
-                    {
-                        expand: true,
-                        cwd:'js/InfiniteCarousel-dev/',
-                        src:[
-                            'InfiniteCarousel.js',
-                            'InfiniteCarousel.css',
-                            'jquery.hammer.js'
-                        ],
-                        dest: 'js/InfiniteCarousel-<%=vesrion%>/dev/'
-                    },
                     //MINIFIED VERSION
                     {
                         expand: true,
                         cwd:'js/InfiniteCarousel-dev/img/',
                         src:['**'],
-                        dest: 'js/InfiniteCarousel-<%=vesrion%>/minified/img/'
+                        dest: 'js/InfiniteCarousel-<%=vesrion%>-min/img/'
                     },
                     {
                         expand: true,
                         cwd:'js/InfiniteCarousel-dev/',
-                        src:[
-                            //'InfiniteCarousel.css',
-                            'jquery.hammer.js'
-                        ],
-                        dest: 'js/InfiniteCarousel-<%=vesrion%>/minified/'
+                        src:['jquery.hammer.js'],
+                        dest: 'js/InfiniteCarousel-<%=vesrion%>-min/'
                     }
                 ]
             }
@@ -52,7 +32,7 @@ module.exports = function (grunt) {
         cssmin: {
             compress: {
                 files: {
-                    'js/InfiniteCarousel-<%=vesrion%>/minified/InfiniteCarousel.min.css': ['js/InfiniteCarousel-dev/InfiniteCarousel.css']
+                    'js/InfiniteCarousel-<%=vesrion%>-min/InfiniteCarousel.min.css': ['js/InfiniteCarousel-dev/InfiniteCarousel.css']
                 }
             }
         }
