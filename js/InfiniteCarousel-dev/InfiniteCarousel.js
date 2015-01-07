@@ -49,7 +49,7 @@ function InfiniteCarousel(params) {
         isInAnimation = false,
 
     /* PRIVATE */
-        isTouchDevice = (function ICIsTouchDevice() {
+        isTouchDevice = (/**@return {boolean}*/function ICIsTouchDevice() {
             try {
                 document.createEvent("TouchEvent");
                 return true;
@@ -512,18 +512,18 @@ function InfiniteCarousel(params) {
         if (hasArrow) {
             $('.carousel-prev-collection', element).on('click', function ICBindPrevArrow(e) {
                 e.stopPropagation();
+                e.preventDefault();
                 prev();
-                return false;
             });
 
             $('.carousel-next-collection', element).on('click', function ICBindNextArrow(e) {
                 e.stopPropagation();
+                e.preventDefault();
                 next();
-                return false;
             });
         }
 
-        if (hasPosindicator && !isTouchDevice) {
+        if (hasPosindicator && !isTouchDevice && isOldBrowser) {
             $('.posindicator span', element).on('click', function ICBindPosIndicator(e) {
                 var position;
 
@@ -534,7 +534,6 @@ function InfiniteCarousel(params) {
 
                     showPaneNum(position.split('pos-')[1]);
                 }
-                return false;
             });
         }
     };

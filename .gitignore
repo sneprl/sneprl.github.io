@@ -1,2 +1,3 @@
 /.idea
-/js/InfiniteCarousel-dev
+js/InfiniteCarousel-dev
+node_modules
