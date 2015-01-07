@@ -1,60 +1,30 @@
 <html>
 <head>
-    <script type="text/javascript" src="jsPlugin/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/InfiniteCarousel-0.1/jquery.hammer.js"></script>
+    <script type="text/javascript" src="./js/InfiniteCarousel-0.1/InfiniteCarousel.js"></script>
+    <link rel="stylesheet" href="./js/InfiniteCarousel-0.1/InfiniteCarousel.css">
 
     <script>
-        function form_to_json(selector) {
-            var ary = $(selector).serializeArray();
-            var obj = {};
-            for (var a = 0; a < ary.length; a++) obj[ary[a].name] = ary[a].value;
-            return obj;
-        }
-
-        /*function Submitter (tableName) {
-            this.tableName = tableName;
-
-            this.fetchData = function (criteria) {
-
-            }
-        }*/
-
         $(document).ready(function () {
-            $('#formInput').submit(function (e) {
-                e.preventDefault();
-                var url = $(this).attr('action'),
-                    dataJson = form_to_json($(this)),
-                    data;
-
-                data = {
-                    tableName: 'USERS',
-                    operationType: 'save',//NON VA
-                    data: dataJson
-                };
-
-                alert(data);
-                $.ajax({
-                    url: url,
-                    type: 'post',
-                    data: JSON.stringify(data)
-                }).done(function (data) {
-                    alert('DONE: ' + JSON.stringify(data));
-                }).fail(function (err) {
-                    alert('FAIL: ' + JSON.stringify(err));
-                });
-            });
+            var infiniteCarouselText = new InfiniteCarousel({
+                element: '#infiniteCarouselText',
+                hasLoop: false,
+                hasPosindicator: true,
+                //posindicatorInside: true,
+                posindicatorColor: 'red',
+                hasArrow: true,
+                //arrowInside: true,
+                arrowColor: 'red'
+            })
         });
     </script>
 </head>
-<body>
-<form id="formInput" action="http://localhost:8789/save-data" method="post">
-    Nome: <input type="text" name="nome">
-    Cognome: <input type="text" name="cognome">
-    <input type="submit" value="invia">
-</form>
-
-<div id="users">
-    <ul>
-    </ul>
-</div>
+<body style="background-color:black;color: #fff;">
+    <div id="infiniteCarouselText">
+        <span>First test content in span element</span>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique nunc lorem. Ut quis accumsan lorem. Proin lobortis et nibh ac rhoncus. Ut gravida fringilla blandit. Vivamus mattis, diam eu.</div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac vulputate ipsum. Maecenas at elit dapibus, interdum ante eget, dapibus erat. Sed at maximus nibh, in imperdiet magna. Curabitur tincidunt lobortis tellus id suscipit. Etiam eleifend enim ut turpis volutpat molestie. Nulla diam augue, consequat sed mauris id, sollicitudin suscipit sem. Ut ultricies pulvinar nulla. Mauris in ligula dui. Cras malesuada urna et est commodo, eu convallis sem tincidunt. Aliquam vitae congue urna, sed lobortis elit. Sed sed euismod eros, ac condimentum nibh. Phasellus facilisis, est eget cursus sollicitudin, velit augue interdum neque, at lacinia odio massa at lectus. Maecenas.</div>
+    </div>
 </body>
 </html>
